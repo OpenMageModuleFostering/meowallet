@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>MEOWallet</name>
+    <version>0.0.1</version>
+    <stability>stable</stability>
+    <license>MIT</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Official MEO Wallet extension.</summary>
+    <description>Official MEO Wallet extension to receive online payments, simple, fast and totally secure.</description>
+    <notes>Initial release with procheckout payment method.</notes>
+    <authors><author><name>PT Pay, S. A.</name><user>walletpt</user><email>walletpt@telecom.pt</email></author></authors>
+    <date>2015-04-06</date>
+    <time>18:33:29</time>
+    <contents><target name="magecommunity"><dir name="Meowallet"><dir name="Payment"><dir name="Helper"><file name="Data.php" hash="21881d69c35446e7c12b0f032675167d"/></dir><dir name="Model"><dir name="Meowallet"><file name="Abstract.php" hash="9d42dbcb74b3c82053de3b09536460e0"/><file name="Procheckout.php" hash="cc36c6d85da660bcdea98eb993c8f9ec"/></dir><file name="Operation.php" hash="546a9a09a77224747872bc1cbe7ce07f"/><dir name="System"><dir name="Config"><dir name="Source"><dir name="Environment"><file name="View.php" hash="a4af2d583723a2834421fbad08fe48cf"/></dir><dir name="Payment"><file name="Actions.php" hash="12eca297e01a63c5f9b5abcb19e8221d"/></dir></dir></dir></dir></dir><dir name="controllers"><file name="ProcheckoutController.php" hash="5806bab4668a44b3e80f6f407da0eeb9"/></dir><dir name="etc"><file name="config.xml" hash="69e3df9377d27ed964fdc4c0e0993198"/><file name="system.xml" hash="cfb5c0ba4f5026b370e89a9913818729"/></dir><dir name="sql"><file name="mysql4-install-0.0.1.php" hash="24c6f7aeea694036ff277d42545eebc3"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Meowallet_Payment.xml" hash="4852d681cec539e144ab19a3b372937d"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="meowallet.xml" hash="01dc73dd7e3532b5141c8a3ecc34dba9"/></dir><dir name="template"><dir name="meowallet"><dir name="procheckout"><file name="failure.phtml" hash="adaf4a6d642ad933e9cd17f026654e7c"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir name="pt_PT"><file name="Meowallet_Payment.xml" hash=""/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.4.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
