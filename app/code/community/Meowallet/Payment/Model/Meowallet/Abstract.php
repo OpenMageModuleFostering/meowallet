@@ -44,8 +44,10 @@ class Meowallet_Payment_Model_Meowallet_Abstract extends Mage_Payment_Model_Meth
         $payment->registerRefundNotification($amount);
     }
 
-    private function _registerPayment($payment, $amount, $action = Meowallet_Payment_Model_Meowallet_Abstract::ACTION_AUTHORIZE)
+    private function _registerPayment($transaction_id, $payment, $amount, $action = Meowallet_Payment_Model_Meowallet_Abstract::ACTION_AUTHORIZE)
     {
+        $payment->setTransactionId($transaction_id);
+
         switch ($action)
         {
             case Meowallet_Payment_Model_Meowallet_Abstract::ACTION_AUTHORIZE_CAPTURE:
@@ -132,7 +134,7 @@ class Meowallet_Payment_Model_Meowallet_Abstract extends Mage_Payment_Model_Meth
 		return $this->_decrypt( Mage::getStoreConfig($key) );
     }
 
-    protected function processPayment($invoice_id, $status, $amount)
+    protected function processPayment($transaction_id, $invoice_id, $status, $amount, $method)
     {
         Mage::log(sprintf("Processing payment for invoice_id '%s' with status '%s', amount '%s'", $invoice_id, $status, $amount));
 
@@ -150,25 +152,24 @@ class Meowallet_Payment_Model_Meowallet_Abstract extends Mage_Payment_Model_Meth
             throw new \Exception('No payment associated with an order?!');
         }
 
-        $comment  = Mage::helper('meowallet')->__('%s<br/>Status: %s', "MEO Wallet", $status);
+        $comment = Mage::helper('meowallet')->__('%s status update: %s<br/>Payment Method: %s', "MEO Wallet", $status, $method);
         $order->addStatusHistoryComment($comment);
 
         switch ($status)
         {
             case Meowallet_Payment_Model_Operation::COMPLETED:
                 $action = $this->_getPaymentConfig('payment_action');
-                $this->_registerPayment($payment, $amount, $action);
-                #$payment->registerPaymentReviewAction(Mage_Sales_Model_Order_Payment::REVIEW_ACTION_ACCEPT, true);
+                $this->_registerPayment($transaction_id, $payment, $amount, $action);
+                $order->sendOrderUpdateEmail();
                 break;
 
             case Meowallet_Payment_Model_Operation::FAIL:
-                #$payment->registerPaymentReviewAction(Mage_Sales_Model_Order_Payment::REVIEW_ACTION_DENY, true);
                 $order->cancel();
+                $order->sendOrderUpdateEmail();
                 break;
 
             case Meowallet_Payment_Model_Operation::CREATED:
             case Meowallet_Payment_Model_Operation::PENDING:
-                #$payment->registerPaymentReviewAction(Mage_Sales_Model_Order_Payment::REVIEW_ACTION_UPDATE, true);
                 break;
 
             default:
@@ -186,8 +187,8 @@ class Meowallet_Payment_Model_Meowallet_Abstract extends Mage_Payment_Model_Meth
 
         $callback = json_decode($verbatim_callback);
 
-        Mage::log(sprintf("MEOWallet callback for invoice_id '%s' with status '%s'", $callback->ext_invoice_id, $callback->operation_status));
+        Mage::log(sprintf("MEOWallet callback for invoice_id '%s' with status '%s'", $callback->ext_invoiceid, $callback->operation_status));
 
-        $this->processPayment($callback->ext_invoiceid, $callback->operation_status, $callback->amount);
+        $this->processPayment($callback->operation_id, $callback->ext_invoiceid, $callback->operation_status, $callback->amount, $callback->method);
     }
 }

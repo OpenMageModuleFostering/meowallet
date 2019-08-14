@@ -1,7 +1,7 @@
 <config>
     <modules>
         <Meowallet_Payment>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </Meowallet_Payment>
     </modules>
     <global>
@@ -89,7 +89,7 @@
             <meowallet_procheckout>
                 <active>0</active>
                 <model>meowallet/meowallet_procheckout</model>
-                <title>MEO Wallet (Saldo/CC/MB)</title>
+                <title>MEO Wallet (Saldo/Cartão Bancário/MB)</title>
                 <payment_action>sale</payment_action>
                 <allowspecific>0</allowspecific>
                 <environment>1</environment>

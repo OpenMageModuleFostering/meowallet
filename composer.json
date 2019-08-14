@@ -3,7 +3,7 @@
     "type": "magento-module",
     "license": "MIT",
     "homepage": "",
-    "description": "Official MEO Wallet extension.",
+    "description": "MEO Wallet official extension to receive online payments. Simple, fast and totally secure.",
     "authors": [
     {
         "name": "PT Pay, S. A.",

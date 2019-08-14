@@ -48,11 +48,11 @@ class Meowallet_Payment_ProcheckoutController extends Mage_Core_Controller_Front
 
     public function redirectAction()
     {
-        $orderId     = $this->_getSession()->getLastRealOrderId();
-        $order       = $this->_getSalesOrderModel()->loadByIncrementId($orderId);
+        $lastOrderId = $this->_getSession()->getLastRealOrderId();
+        $order       = $this->_getSalesOrderModel()->loadByIncrementId($lastOrderId);
         $ProCheckout = $this->_getProcheckoutModel();
         $checkout    = $ProCheckout->createCheckout($order, 
-                        Mage::getUrl('checkout/onepage/success'),
+                        Mage::getUrl('meowallet/procheckout/success'),
                         Mage::getUrl('meowallet/procheckout/failure'));
 
         $url = sprintf('%s%s%s=%s', $checkout->url_redirect,
@@ -73,8 +73,42 @@ class Meowallet_Payment_ProcheckoutController extends Mage_Core_Controller_Front
             return;
         }
 
+        $order       = $this->_getSalesOrderModel()->loadByIncrementId($lastOrderId);
+        $checkout_id = strval($this->getRequest()->getParam('checkoutid'));
+
+        if ($order && $checkout_id && $order->getExtOrderId() == $checkout_id)
+        {
+            $order->cancel();
+            $order->save();
+        }
+
         $this->loadLayout();
         $this->renderLayout();
+    }
+
+    public function successAction()
+    {
+        $lastOrderId = $this->_getSession()->getLastRealOrderId();
+        $order       = null;
+
+        if ($lastOrderId)
+        {
+            $order = $this->_getSalesOrderModel()->loadByIncrementId($lastOrderId);
+        }
+
+        if ( $order && $order->getCanSendNewEmailFlag() )
+        {
+            try
+            {
+                $order->sendNewOrderEmail();
+            }
+            catch (\Exception $e)
+            {
+                Mage::log("MEOWallet cannot send new order email. Reason: ".$e->getMessage());
+            }
+        }
+
+        $this->_redirect('checkout/onepage/success');
     }
 
     public function callbackAction()

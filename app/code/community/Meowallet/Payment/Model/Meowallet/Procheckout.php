@@ -92,14 +92,20 @@ class Meowallet_Payment_Model_Meowallet_Procheckout extends Meowallet_Payment_Mo
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $response = json_decode( curl_exec($ch) );
-        #	$payment  = $oder->getPayment();
-        #	$payment->setTransactionId($response->id);
-        #	$payment->save();
 
-        if (false == is_object($response) || false == property_exists($response, 'url_redirect'))
+        if (   false == is_object($response)
+            || false == property_exists($response, 'id')
+            || false == property_exists($response, 'url_redirect')
+            )
         {
-            Mage::throwException($this->_getHelper()->__('Could not create MEO Wallet procheckout'));
+            $response_data = var_export($response);
+            Mage::throwException(sprintf('%s. Service response: %s',
+                                $this->_getHelper()->__('Could not create MEO Wallet procheckout'),
+                                $response_data));
         }
+
+        $order->setExtOrderId($response->id);
+        $order->save();
 
         return $response;
     }
