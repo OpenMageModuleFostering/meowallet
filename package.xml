@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>MEOWallet</name>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <stability>stable</stability>
     <license>MIT</license>
     <channel>community</channel>
@@ -14,11 +14,11 @@ One service and one contract, based on security and confidentiality best practic
 Ensure customer satisfaction and enhance your business. Find more at wallet.pt.&#xD;
 &#xD;
 The MEO Wallet is a service of PT Pay, SA, registered payment institution at the Bank of Portugal under number 8705, belonging to PT Portugal. &#xA9;</description>
-    <notes>Register payment method.</notes>
+    <notes>Added support for Magento version 1.5.</notes>
     <authors><author><name>PT Pay, S. A.</name><user>walletpt</user><email>walletpt@telecom.pt</email></author></authors>
-    <date>2015-04-29</date>
-    <time>15:51:09</time>
-    <contents><target name="magecommunity"><dir name="Meowallet"><dir name="Payment"><dir name="Helper"><file name="Data.php" hash="21881d69c35446e7c12b0f032675167d"/></dir><dir name="Model"><dir name="Meowallet"><file name="Abstract.php" hash="f1742659e7c1fcf057303fc1771d7f57"/><file name="Procheckout.php" hash="eee62cb423d097245178742f0c01ad5a"/></dir><file name="Operation.php" hash="546a9a09a77224747872bc1cbe7ce07f"/><dir name="System"><dir name="Config"><dir name="Source"><dir name="Environment"><file name="View.php" hash="a4af2d583723a2834421fbad08fe48cf"/></dir><dir name="Payment"><file name="Actions.php" hash="12eca297e01a63c5f9b5abcb19e8221d"/></dir></dir></dir></dir></dir><dir name="controllers"><file name="ProcheckoutController.php" hash="363afaf199c0152b1c0aee2892674ec5"/></dir><dir name="etc"><file name="config.xml" hash="2fde843ffd1b123595e24476b4dd8252"/><file name="system.xml" hash="cfb5c0ba4f5026b370e89a9913818729"/></dir><dir name="sql"><file name="mysql4-install-0.0.1.php" hash="24c6f7aeea694036ff277d42545eebc3"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Meowallet_Payment.xml" hash="4852d681cec539e144ab19a3b372937d"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="meowallet.xml" hash="01dc73dd7e3532b5141c8a3ecc34dba9"/></dir><dir name="template"><dir name="meowallet"><dir name="procheckout"><file name="failure.phtml" hash="5656cc0b386c6f02c8ae5e1017f81386"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir><dir name="pt_PT"><file name="Meowallet_Payment.csv" hash="7c1e344bd75a4be0437b512f6bd6a6e3"/></dir></dir></target></contents>
+    <date>2015-06-02</date>
+    <time>13:37:41</time>
+    <contents><target name="magecommunity"><dir name="Meowallet"><dir name="Payment"><dir name="Helper"><file name="Data.php" hash="21881d69c35446e7c12b0f032675167d"/></dir><dir name="Model"><dir name="Meowallet"><file name="Abstract.php" hash="f1742659e7c1fcf057303fc1771d7f57"/><file name="Procheckout.php" hash="eee62cb423d097245178742f0c01ad5a"/></dir><file name="Operation.php" hash="546a9a09a77224747872bc1cbe7ce07f"/><dir name="System"><dir name="Config"><dir name="Source"><dir name="Environment"><file name="View.php" hash="a4af2d583723a2834421fbad08fe48cf"/></dir><dir name="Payment"><file name="Actions.php" hash="12eca297e01a63c5f9b5abcb19e8221d"/></dir></dir></dir></dir></dir><dir name="controllers"><file name="ProcheckoutController.php" hash="363afaf199c0152b1c0aee2892674ec5"/></dir><dir name="etc"><file name="config.xml" hash="0e3a6e1c62f3a0455b1fd649f541121e"/><file name="system.xml" hash="cfb5c0ba4f5026b370e89a9913818729"/></dir><dir name="sql"><file name="mysql4-install-0.0.1.php" hash="24c6f7aeea694036ff277d42545eebc3"/></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="meowallet.xml" hash="01dc73dd7e3532b5141c8a3ecc34dba9"/></dir><dir name="template"><dir name="meowallet"><dir name="procheckout"><file name="failure.phtml" hash="5656cc0b386c6f02c8ae5e1017f81386"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Meowallet_Payment.xml" hash="4852d681cec539e144ab19a3b372937d"/></dir></target><target name="magelocale"><dir><dir name="pt_PT"><file name="Meowallet_Payment.csv" hash="7c1e344bd75a4be0437b512f6bd6a6e3"/></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.4.0</min><max>5.7.0</max></php></required></dependencies>
 </package>
