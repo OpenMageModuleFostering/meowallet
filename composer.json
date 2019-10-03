@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/MEOWallet",
+    "name": "OpenMageModuleFostering\/MEOWallet",
     "type": "magento-module",
     "license": "MIT",
     "homepage": "",
     "description": "MEO Wallet official extension to receive online payments. Simple, fast and totally secure.",
     "authors": [
-    {
-        "name": "PT Pay, S. A.",
-        "email": "walletpt@telecom.pt"
-    }
-],
+        {
+            "name": "PT Pay, S. A.",
+            "email": "walletpt@telecom.pt"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
